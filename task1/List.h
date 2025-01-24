@@ -23,7 +23,7 @@ int stringListSize(t_element** list); //won't change the address,
                                     //could pass the address of the start
 int stringListIndexOf(t_element** list, string str);
 void stringListRemoveDuplicates(t_element*** list);
-void stringListReplaceInStrings(t_element*** list, char* before, char* after);
+void stringListReplaceInStrings(t_element** list, char* before, char* after);
 void stringListSort(t_element** list, bool ascending);  //won't change the size
 
 #endif

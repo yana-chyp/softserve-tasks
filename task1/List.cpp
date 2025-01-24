@@ -54,7 +54,7 @@ void stringListRemove(t_element*** plist, std::string str) {
     int index = 0;
     for (t_element** pelem = *plist; *pelem!=nullptr; ++pelem) {
         if (strcmp(str.c_str(), **pelem)!=0) {
-            std::cout<<index<<"\t"<<**pelem<<"\t"<<*pelem<<"\n";
+            // std::cout<<index<<"\t"<<**pelem<<"\t"<<*pelem<<"\n";
             newList[index] = *pelem;
             ++index;
         }
@@ -79,7 +79,7 @@ void stringListRemoveDuplicates(t_element*** plist) {
     int num_unique = 0;
     for (auto pelem = *plist; pelem!=*plist+oldSize; ++pelem) {
         if (!*pelem) continue;
-        std::cout<<*pelem<<"\t"<<**pelem<<" is unique\n";
+        // std::cout<<*pelem<<"\t"<<**pelem<<" is unique\n";
         ++num_unique;
         
         for (auto pelem2 = pelem+1; pelem2!=*plist+oldSize; ++pelem2) { 
