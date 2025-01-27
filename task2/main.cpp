@@ -7,7 +7,7 @@ int main() {
     std::cout<<"a: "<<a<<"\n";
 
     AnyType b = 1;
-    std::cout<<"b: "<<b<<"\n";
+    std::cout<<"b: "<<b.getChar()<<"\n";
 
     AnyType c = 3.14;
     std::cout<<"c: "<<c<<"\n";

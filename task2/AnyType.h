@@ -2,10 +2,12 @@
 #define ANYTYPE_H
 
 #include <iostream>
+#include <exception>
 
 class AnyType {
-    enum Type {INT, BOOL, CHAR, DOUBLE};
-    struct InvalidType{};
+    public:
+        enum Type {INT, BOOL, CHAR, DOUBLE};
+        struct InvalidType: public std::exception {};
     private:
         Type type;
         union {
@@ -32,6 +34,11 @@ class AnyType {
         operator char();
         operator double();
         operator bool();
+
+        int getInt() ;
+        double getDouble() ;
+        char getChar() ;
+        bool getBool() ;
 
         friend std::ostream& operator<<(std::ostream&, const AnyType&);
 };

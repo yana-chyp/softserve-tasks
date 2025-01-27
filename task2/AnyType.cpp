@@ -83,6 +83,12 @@ AnyType::operator int() {
     return ivalue;
 }
 
+int AnyType::getInt() {return int(*this);}
+double AnyType::getDouble() {return double(*this);}
+char AnyType::getChar() {return char(*this);}
+bool AnyType::getBool() {return bool(*this);}
+
+
 AnyType::operator char() {
     if (type!=CHAR) throw InvalidType();
     return cvalue;
