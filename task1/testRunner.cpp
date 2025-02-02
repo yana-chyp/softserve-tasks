@@ -6,13 +6,13 @@
 
 class StringListTestFixture: public testing::Test {
     protected:
-        t_element*** plist;
+        t_element** plist;
     public:
         void SetUp() override;
 };
 
 void StringListTestFixture::SetUp() {
-    plist = (t_element***)malloc(sizeof(char**));
+    plist = (t_element**)malloc(sizeof(t_element*));
 
     stringListInit(plist);
 }
@@ -43,7 +43,7 @@ TEST_F(StringListTestFixture, TestIndexOf) {
 TEST_F(StringListTestFixture, TestAdd) {
     std::string t = "test";
     stringListAdd(plist, t);
-    ASSERT_EQ(0, strcmp(***plist, t.c_str()));
+    ASSERT_EQ(0, strcmp(**plist, t.c_str()));
 }
 
 TEST_F(StringListTestFixture, TestRemove) {
@@ -61,7 +61,7 @@ TEST_F(StringListTestFixture, TestRemove) {
 
     bool containst1 = false;
     for (auto pelem = *plist; *pelem!=nullptr; ++pelem) {
-        if (strcmp(**pelem, t1.c_str())==0) containst1 = true; break;
+        if (strcmp(*pelem, t1.c_str())==0) containst1 = true; break;
     }
     ASSERT_FALSE(containst1);
 
@@ -82,7 +82,7 @@ TEST_F(StringListTestFixture, TestRemoveDuplicates) {
     for (auto pelem = *plist; *pelem!=nullptr; ++pelem) {
         int count = 1;
         for (auto pelem2 = pelem+1; *pelem2!=nullptr; ++pelem2) {
-            if (strcmp(**pelem, **pelem2)==0) {++count; break;} 
+            if (strcmp(*pelem, *pelem2)==0) {++count; break;} 
         }
         ASSERT_EQ(1, count);
     }
@@ -103,7 +103,7 @@ TEST_F(StringListTestFixture, TestReplaceInStrings) {
     stringListReplaceInStrings(*plist, "test1", "test");
     for (int i: indexesOft1) {
         std::cout<<*plist<<"\t"<<(*plist)[i]<<"\t"<<*((*plist)[i])<<"\n";
-        ASSERT_EQ(0, strcmp(*((*plist)[i]), t.c_str()));
+        ASSERT_EQ(0, strcmp((*plist)[i], t.c_str()));
     }
 }
 
