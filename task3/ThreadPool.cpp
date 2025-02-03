@@ -5,7 +5,7 @@
 #include <iostream>
 
 ThreadPool::ThreadPool(int num) {
-    std::cout<<"number of threads in thread pool: "<<num<<"\n";
+    // std::cout<<"number of threads in thread pool: "<<num<<"\n";
     for (int i = 0; i<num; ++i)
         thrds.push_back(std::thread(&ThreadPool::loop, this));
 }

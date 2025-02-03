@@ -11,21 +11,28 @@ int main() {
     Directory dir(path);
     auto files = dir.get_files();
 
-    auto start_s = std::chrono::high_resolution_clock::now();
-    auto prjsts_s = dir.process_files_st(files);
-    auto finish_s = std::chrono::high_resolution_clock::now();
-    auto duration_s = std::chrono::duration_cast<std::chrono::microseconds>(finish_s - start_s).count();
-    std::cout<<"for single-threaded duration = "<<duration_s<<"\n\n";
-    dir.write_result_to_file("prjstats_st.txt", prjsts_s);
-
+    dir.process_dir_st(files);
+    dir.write_result_to_file("results_singlethread.txt");
 
     ThreadPool pool;
-    auto start_p = std::chrono::high_resolution_clock::now();
-    auto prjsts_p = dir.process_files_pl(files, pool);
-    auto finish_p = std::chrono::high_resolution_clock::now();
-    auto duration_p = std::chrono::duration_cast<std::chrono::microseconds>(finish_p - start_p).count();
-    std::cout<<"for multi-threaded duration = "<<duration_p<<"\n\n";
-    dir.write_result_to_file("prjstats_pl.txt", prjsts_p);
+    dir.process_dir_pl(files, pool);
+    dir.write_result_to_file("results_multithread.txt");
+;
+    // auto start_s = std::chrono::high_resolution_clock::now();
+    // auto prjsts_s = dir.process_files_st(files);
+    // auto finish_s = std::chrono::high_resolution_clock::now();
+    // auto duration_s = std::chrono::duration_cast<std::chrono::microseconds>(finish_s - start_s).count();
+    // std::cout<<"for single-threaded duration = "<<duration_s<<"\n\n";
+    // dir.write_files_stat_to_file("prjstats_st.txt", prjsts_s);
+
+
+    
+    // auto start_p = std::chrono::high_resolution_clock::now();
+    // auto prjsts_p = dir.process_files_pl(files, pool);
+    // auto finish_p = std::chrono::high_resolution_clock::now();
+    // auto duration_p = std::chrono::duration_cast<std::chrono::microseconds>(finish_p - start_p).count();
+    // std::cout<<"for multi-threaded duration = "<<duration_p<<"\n\n";
+    // dir.write_files_stat_to_file("prjstats_pl.txt", prjsts_p);
 
 
     return 0;

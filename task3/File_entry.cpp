@@ -12,8 +12,8 @@
 #include <chrono>
 using namespace std;
 
-FileEntry::FileEntry(std::string name): name(name), blank_lines(0), comment_lines(0), code_lines(0), time(999) {}
-FileEntry::~FileEntry() {};
+FileEntry::FileEntry(std::string name): name(name), blank_lines(0), comment_lines(0), code_lines(0), time(0) {}
+FileEntry::~FileEntry() {name = ""; blank_lines = 0; comment_lines = 0; code_lines = 0; time = 0;};
 std::string FileEntry::get_name() const { return name; }
 std::vector<int> FileEntry::get_statistics() {return std::vector<int>{blank_lines, comment_lines, code_lines, time};}
 
@@ -69,7 +69,6 @@ FileEntry::TypeOfLine FileEntry::detect_type(std::string line) {
 }
 
 void FileEntry::set_zero() {
-    // std::cout<<"called set_zero for "<<name<<"\n";
     blank_lines = 0;
     comment_lines = 0;
     code_lines = 0;
